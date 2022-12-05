@@ -16,7 +16,7 @@ require (
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/spf13/viper v1.10.1
 	github.com/stretchr/testify v1.7.1-0.20210427113832-6241f9ab9942
-	github.com/vektah/gqlparser/v2 v2.4.1
+	github.com/vektah/gqlparser/v2 v2.5.1
 	github.com/vmihailenco/msgpack/v5 v5.3.5
 )
 
