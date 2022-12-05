@@ -9,7 +9,7 @@ require (
 	github.com/gavv/httpexpect/v2 v2.3.1
 	github.com/go-playground/locales v0.14.0
 	github.com/go-playground/universal-translator v0.18.0
-	github.com/go-playground/validator/v10 v10.10.1
+	github.com/go-playground/validator/v10 v10.11.1
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/labstack/echo/v4 v4.7.2
 	github.com/lib/pq v1.10.4
