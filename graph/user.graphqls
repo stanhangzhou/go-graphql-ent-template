@@ -1,0 +1,102 @@
+"""
+Represents a user which is able to login to the application
+"""
+type User implements Node {
+  """
+  Unique identifier of the user
+  Prefix: usr
+  """
+  id: ID!
+
+  """
+  First name of the user
+  """
+  firstName: String!
+
+  """
+  Surname of the user
+  """
+  lastName: String!
+
+  """
+  Email of the user. Used for login and notifications
+  """
+  email: String!
+
+  """
+  RFC3339 conform timestamp of the object creation date. 
+  """
+  createdAt: String!
+
+  """
+  RFC3339 conform timestamp of the last update of the object.
+  """
+  updatedAt: String!
+}
+
+type UserConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [UserEdge]
+}
+
+type UserEdge {
+  node: User
+  cursor: Cursor!
+}
+
+extend type Query {
+  user(id: ID): User
+  users(after: Cursor, first: Int, before: Cursor, last: Int, where: UserWhereInput): UserConnection
+}
+
+"""
+Input to create a new user
+"""
+input CreateUserInput {
+  """
+  First name of the user. Should not be longer than 255 characters
+  """
+  firstName: String! @binding(constraint: "required,max=255")
+  """
+  Surname of the user. Should not be longer than 255 characters
+  """
+  lastName: String! @binding(constraint: "required,max=255")
+  """
+  Email address of the user used for login and notifications
+  Should be a valid email address
+  """
+  email: String! @binding(constraint: "required,email")
+  """
+  Password of the user used for login
+  """
+  password: String! @binding(constraint: "required,min=8,max=255")
+}
+
+"""
+Input used to update a existing user
+"""
+input UpdateUserInput {
+  """
+  Unique identifier of the user to update.
+  Should start with usr_
+  """
+  id: ID! @binding(constraint: "required")
+  """
+  New first name of the user
+  """
+  firstName: String! @binding(constraint: "required,max=255")
+  """
+  New surename of the user
+  """
+  lastName: String! @binding(constraint: "required,max=255")
+  """
+  New email address of the user
+  """
+  email: String! @binding(constraint: "required,email")
+}
+
+extend type Mutation {
+  createUser(input: CreateUserInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+}
