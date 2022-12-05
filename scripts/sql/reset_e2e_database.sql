@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS trustify_core_e2e;
+CREATE DATABASE trustify_core_e2e WITH ENCODING utf8;

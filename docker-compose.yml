@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.2
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 8s
+      timeout: 5s
+      retries: 5
+
